@@ -3,10 +3,38 @@
 <html>
   <head>
     <title>piggy bank</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/styles.css' %}"
+    />
   </head>
   <body>
-    <button type="button" onclick="alert('Button Clicked!')"/>
-    Click Me
-    </button>
+    <div class="pig-container">
+      <button onclick="redirectToAccount()">
+        <img
+          src="{% static 'img/profilePig2.png' %}"
+          alt="Pig Image"
+          class="pig-image"
+        />
+      </button>
+
+      <div class="speech-bubble">
+        <form>
+          <label for="userInput">Enter your name:</label>
+          <input type="text" id="userInput" placeholder='"Wilbur"' />
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function redirectToAccount() {
+        // Get the user input from the input field
+        var kidName = document.getElementById("userInput").value;
+
+        // Construct the URL with the user's input and redirect
+        window.location.href = "/account/" + encodeURIComponent(kidName);
+      }
+    </script>
   </body>
 </html>
