@@ -5,9 +5,10 @@ from django.http import HttpResponse
 def indexPageView(request):
     return render(request, 'pages/index.html')
 
-def accountPageView(request, kid_name):
+def accountPageView(request, kidName):
     meter_value = request.session.get('meter_value', 0)
     goal_amount = request.session.get('goal_amount', 0)
+    not_enough_cash = False
 
     if request.method == 'POST':
         if 'add_ten_dollar' in request.POST:
@@ -23,13 +24,25 @@ def accountPageView(request, kid_name):
             # Add 0.25 dollars (25 cents) to the meter value
             meter_value += 0.25
         elif 'subtract_ten_dollar' in request.POST:
-            meter_value -= 10
+            if meter_value >= 10:
+                meter_value -= 10
+            else:
+                not_enough_cash = True  # Set the flag if not enough cash
         elif 'subtract_five_dollar' in request.POST:
-            meter_value -= 5
+            if meter_value >= 5:
+                meter_value -= 5
+            else:
+                not_enough_cash = True  # Set the flag if not enough cash
         elif 'subtract_dollar' in request.POST:
-            meter_value -= 1
+            if meter_value >= 1:
+                meter_value -= 1
+            else:
+                not_enough_cash = True  # Set the flag if not enough cash
         elif 'subtract_quarter' in request.POST:
-            meter_value -= 0.25
+            if meter_value >= 0.25:
+                meter_value -= 0.25
+            else:
+                not_enough_cash = True  # Set the flag if not enough cash
         elif 'reset_meter' in request.POST:
             # Reset the meter value to 0
             meter_value = 0
@@ -50,4 +63,12 @@ def accountPageView(request, kid_name):
 
     formatted_percentage = "{:.2f}".format(progress_percentage)
 
-    return render(request, 'pages/account.html', {'meter_value':meter_value, 'goal_amount': goal_amount, 'progress_percentage': formatted_percentage, 'kid_name': kid_name})
+    context = {
+        'kidName':kidName,
+        'meter_value':meter_value,
+        'goal_amount':goal_amount,
+        'progress_percentage':formatted_percentage,
+        'not_enough_cash':not_enough_cash
+    }
+
+    return render(request, 'pages/account.html', context)

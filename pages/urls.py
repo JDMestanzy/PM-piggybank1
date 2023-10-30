@@ -4,5 +4,5 @@ from .views import accountPageView
 
 urlpatterns = [
     path("", indexPageView, name="index"),
-    path("account/<kid_name>", accountPageView, name="account")
+    path("account/<kidName>", accountPageView, name="account")
 ]
