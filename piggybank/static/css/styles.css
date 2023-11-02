@@ -1,32 +1,32 @@
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
 }
 
 .pig-container {
-  position: relative;
+	position: relative;
 }
 
 .pig-image {
-  width: 200px;
+	width: 200px;
 }
 
 .speech-bubble {
-  position: absolute;
-  background-color: #ffffff;
-  border: 1px solid #000000;
-  padding: 10px;
-  border-radius: 10px;
-  width: 200px;
-  top: -100px;
-  left: 50px;
+	position: absolute;
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	padding: 10px;
+	border-radius: 10px;
+	width: 200px;
+	top: -100px;
+	left: 50px;
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
