@@ -43,129 +43,179 @@
     </style>
   </head>
   <body>
-    <h1>Welcome to your piggy bank {{kidName}}!</h1>
-    <p>Meter Value: ${{ meter_value|floatformat:2 }}</p>
+      <h1>Welcome to your piggy bank {{kidName}}!</h1>
+      <h2>Add money to your piggy bank!</h2>
 
-    <!-- Form to submit and add 1 dollar or 25 cents to the meter -->
-    <form method="post" action="">
-        {% csrf_token %}
-        <div class="button-row">
-            <div class="button-container">
-                <img src="{% static 'img/ten.jpg' %}"
-                     alt="Add Ten Dollars"
-                     width="172"
-                     height="75" />
-                <br />
-                <button type="submit" name="add_ten_dollar" class="sub-button green-button">
-                    + $10
-                </button>
-                <button type="submit" name="subtract_ten_dollar" class="sub-button red-button">
-                    − $10
-                </button>
-            </div>
-            <div class="button-container">
-                <img src="{% static 'img/abe.png' %}"
-                     alt="Add Five Dollars"
-                     width="172"
-                     height="75" />
-                <br />
-                <button type="submit" name="add_five_dollar" class="sub-button green-button">
-                    + $5
-                </button>
-                <button type="submit" name="subtract_five_dollar" class="sub-button red-button">
-                    − $5
-                </button>
-            </div>
-            <div class="button-container">
-                <img src="{% static 'img/singles.jpg' %}"
-                     alt="Add One Dollar"
-                     width="172"
-                     height="75" />
-                <br />
-                <button type="submit" name="add_dollar" class="sub-button green-button">
-                    + $1
-                </button>
-                <button type="submit" name="subtract_dollar" class="sub-button red-button">
-                    − $1
-                </button>
-            </div>
-            <div class="button-container">
-                <img src="{% static 'img/quarter.jpg' %}"
-                     alt="Add 25 cents"
-                     width="75"
-                     height="75" />
-                <br />
-                <button type="submit" name="add_quarter" class="sub-button green-button">
-                    + 25¢
-                </button>
-                <button type="submit" name="subtract_quarter" class="sub-button red-button">
-                    − 25¢
-                </button>
-            </div>
-            <div class="button-container">
-                <img src="{% static 'img/dime.jpg' %}"
-                     alt="Add 10 cents"
-                     width="75"
-                     height="75" />
-                <br />
-                <button type="submit" name="add_dime" class="sub-button green-button">
-                    + 10¢
-                </button>
-                <button type="submit" name="subtract_dime" class="sub-button red-button">
-                    − 10¢
-                </button>
-            </div>
-            <div class="button-container">
-                <img src="{% static 'img/nickel.jpg' %}"
-                     alt="Add 5 cents"
-                     width="75"
-                     height="75" />
-                <br />
-                <button type="submit" name="add_nickel" class="sub-button green-button">
-                    + 5¢
-                </button>
-                <button type="submit" name="subtract_nickel" class="sub-button red-button">
-                    − 5¢
-                </button>
-            </div>
-            <div class="button-container">
-                <img src="{% static 'img/penny.jpg' %}"
-                     alt="Add 1 cent"
-                     width="75"
-                     height="75" />
-                <br />
-                <button type="submit" name="add_penny" class="sub-button green-button">
-                    + 1¢
-                </button>
-                <button type="submit" name="subtract_penny" class="sub-button red-button">
-                    − 1¢
-                </button>
-            </div>
-        </div>      
-        <br /><br />
-        {% if not_enough_cash %}
-        <script>
-            alert("NOT ENOUGH CASH");
-        </script>
-        {% endif %}
-        <button type="submit" name="reset_meter">Reset Meter</button>
+      <!-- Form to submit and add 1 dollar or 25 cents to the meter -->
+      <form method="post" action="">
+          {% csrf_token %}
+          <div class="button-row">
+              <div class="button-container">
+                  <img src="{% static 'img/ten.jpg' %}"
+                       alt="Add Ten Dollars"
+                       width="172"
+                       height="75" />
+                  <br />
+                  <button type="submit" name="add_ten_dollar" class="sub-button green-button">
+                      + $10
+                  </button>
+                  <button type="submit" name="subtract_ten_dollar" class="sub-button red-button">
+                      − $10
+                  </button>
+              </div>
+              <div class="button-container">
+                  <img src="{% static 'img/abe.png' %}"
+                       alt="Add Five Dollars"
+                       width="172"
+                       height="75" />
+                  <br />
+                  <button type="submit" name="add_five_dollar" class="sub-button green-button">
+                      + $5
+                  </button>
+                  <button type="submit" name="subtract_five_dollar" class="sub-button red-button">
+                      − $5
+                  </button>
+              </div>
+              <div class="button-container">
+                  <img src="{% static 'img/singles.jpg' %}"
+                       alt="Add One Dollar"
+                       width="172"
+                       height="75" />
+                  <br />
+                  <button type="submit" name="add_dollar" class="sub-button green-button">
+                      + $1
+                  </button>
+                  <button type="submit" name="subtract_dollar" class="sub-button red-button">
+                      − $1
+                  </button>
+              </div>
+              <div class="button-container">
+                  <img src="{% static 'img/quarter.jpg' %}"
+                       alt="Add 25 cents"
+                       width="75"
+                       height="75" />
+                  <br />
+                  <button type="submit" name="add_quarter" class="sub-button green-button">
+                      + 25¢
+                  </button>
+                  <button type="submit" name="subtract_quarter" class="sub-button red-button">
+                      − 25¢
+                  </button>
+              </div>
+              <div class="button-container">
+                  <img src="{% static 'img/dime.jpg' %}"
+                       alt="Add 10 cents"
+                       width="75"
+                       height="75" />
+                  <br />
+                  <button type="submit" name="add_dime" class="sub-button green-button">
+                      + 10¢
+                  </button>
+                  <button type="submit" name="subtract_dime" class="sub-button red-button">
+                      − 10¢
+                  </button>
+              </div>
+              <div class="button-container">
+                  <img src="{% static 'img/nickel.jpg' %}"
+                       alt="Add 5 cents"
+                       width="75"
+                       height="75" />
+                  <br />
+                  <button type="submit" name="add_nickel" class="sub-button green-button">
+                      + 5¢
+                  </button>
+                  <button type="submit" name="subtract_nickel" class="sub-button red-button">
+                      − 5¢
+                  </button>
+              </div>
+              <div class="button-container">
+                  <img src="{% static 'img/penny.jpg' %}"
+                       alt="Add 1 cent"
+                       width="75"
+                       height="75" />
+                  <br />
+                  <button type="submit" name="add_penny" class="sub-button green-button">
+                      + 1¢
+                  </button>
+                  <button type="submit" name="subtract_penny" class="sub-button red-button">
+                      − 1¢
+                  </button>
+              </div>
+          </div>
+          <br /><br />
+          {% if not_enough_cash %}
+          <script>
+              alert("NOT ENOUGH CASH");
+          </script>
+          {% endif %}
 
-        <!-- Input field for the goal amount -->
-        <p>
-            Enter Goal Amount: $<input type="number"
-                                        name="goal_amount"
-                                        step="0.01"
-                                        placeholder="0.00"
-                                        value="{{ goal_amount }}" />
-        </p>
+          <!-- Input field for the goal amount -->
+          <p>
+              Enter Goal Amount: $ <input type="number"
+                                          name="goal_amount"
+                                          step="0.01"
+                                          placeholder="0.00"
+                                          value="{{ goal_amount }}" />
+          </p>
+          <p>Money Saved: ${{ meter_value|floatformat:2 }}</p>
 
-        <!-- Progress bar container -->
-        <div class="progress-bar-container">
-            <!-- Progress bar (will dynamically elongate based on the percentage of the goal achieved) -->
-            <div class="progress-bar" style="width: {{ progress_percentage }}%;">
-                {{ progress_percentage }}%
-            </div>
-        </div>
-    </form>
+          <!-- Progress bar container -->
+          <div class="progress-bar-container">
+              <!-- Progress bar (will dynamically elongate based on the percentage of the goal achieved) -->
+              <div class="progress-bar" style="width: {{ progress_percentage }}%;">
+                  {{ progress_percentage }}%
+              </div>
+          </div>
+          <br />
+          <div id="countdown">
+              Amount still needed: $<span id="remainingAmount">{{ remaining_amount }}</span>
+          </div>
+          <br />
+          <div id="extra">
+              Extra money saved: $<span id="extraMoney">{{ extra_money }}</span>
+          </div>
+          <br />
+          <button type="submit" name="reset_meter">Reset Meter</button>
+      </form>
+      <script>
+        // Get the goal amount from the template variable
+        var goalAmount = {{ goal_amount }};
+
+        // Calculate and update the remaining amount
+        function updateCountdown() {
+            var meterValue = {{ meter_value }};
+            var remainingAmount = goalAmount - meterValue;
+            remainingAmount = remainingAmount.toFixed(2); // Limit to two decimal places
+            document.getElementById('remainingAmount').textContent = remainingAmount;
+        }
+
+        // Keep track of excess money
+        function updateExtra() {
+        var meterValue = {{ meter_value }};
+        var extraMoney = meterValue - goalAmount;
+        extraMoney = extraMoney.toFixed(2); // Limit to two decimal places
+        document.getElementById('extraMoney').textContent = extraMoney;
+    }
+
+        // Calculate and update the progress percentage
+        function updateProgress() {
+            var meterValue = {{ meter_value }};
+            var progressPercentage = (meterValue / goalAmount) * 100;
+            progressPercentage = Math.min(progressPercentage, 100); // Ensure it doesn't go over 100%
+            document.querySelector('.progress-bar').style.width = progressPercentage + '%';
+          document.querySelector('.progress-bar').textContent = progressPercentage.toFixed(2) + '%';
+
+          if (progressPercentage < 100) {
+              updateCountdown();
+          }
+
+          if (progressPercentage === 100) {
+              updateExtra();
+          }
+        }
+
+        // Call the updateCountdown and updateProgress functions initially and whenever the meter value changes
+        updateProgress();
+      </script>
   </body>
 </html>
