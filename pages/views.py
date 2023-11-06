@@ -22,6 +22,15 @@ def accountPageView(request, kidName):
         elif 'add_quarter' in request.POST:
             # Add 0.25 dollars (25 cents) to the meter value
             meter_value += 0.25
+        elif 'add_dime' in request.POST:
+            # Add 0.10 dollars (10 cents) to the meter value
+            meter_value += 0.10
+        elif 'add_nickel' in request.POST:
+            # Add 0.05 dollars (05 cents) to the meter value
+            meter_value += 0.05
+        elif 'add_penny' in request.POST:
+            # Add 0.01 dollars (01 cents) to the meter value
+            meter_value += 0.01
         elif 'subtract_ten_dollar' in request.POST:
             if meter_value >= 10:
                 meter_value -= 10
@@ -40,6 +49,21 @@ def accountPageView(request, kidName):
         elif 'subtract_quarter' in request.POST:
             if meter_value >= 0.25:
                 meter_value -= 0.25
+            else:
+                not_enough_cash = True  # Set the flag if not enough cash
+        elif 'subtract_dime' in request.POST:
+            if meter_value >= 0.10:
+                meter_value -= 0.10
+            else:
+                not_enough_cash = True  # Set the flag if not enough cash
+        elif 'subtract_nickel' in request.POST:
+            if meter_value >= 0.05:
+                meter_value -= 0.05
+            else:
+                not_enough_cash = True  # Set the flag if not enough cash
+        elif 'subtract_penny' in request.POST:
+            if meter_value >= 0.01:
+                meter_value -= 0.01
             else:
                 not_enough_cash = True  # Set the flag if not enough cash
         elif 'reset_meter' in request.POST:
